@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <link rel=stylesheet type="text/css" href="Project_Javascript_jQuery.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" src="Project_Javascript_jQuery.js"></script> -->
+<style>
+    :root{
+        --col:6;
+        --row:6;
+    }
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(var(--col),1fr);
+  background-color: #2196F3;
+  padding: 10px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h1>Grid Elements</h1>
+
+<p>A Grid Layout must have a parent element with the <em>display</em> property set to <em>grid</em> or <em>inline-grid</em>.</p>
+
+<p>Direct child element(s) of the grid container automatically becomes grid items.</p>
+
+<div class="grid-container" id="grid-con">
+
+</div>
+
+<script src="Assign-5.js"></script>
+</body>
+</html>
