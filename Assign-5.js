@@ -1,13 +1,17 @@
 // function that builds a grid in the "container"
 let grid= document.getElementById("grid-con");
 let grid_style=document.getElementsByClassName("grid-item");
-console.log(grid);
-let r=6;
-let col=6;
-createGrid(r,col);
+let form=document.getElementById("form");
+form.addEventListener("submit",function(event){
+    event.preventDefault();
+    console.log(event);
+    createGrid();
+})
 
 
-function createGrid(r,col) {
+function createGrid() {
+    let r=document.getElementById("row-quantity").value;
+    let col=document.getElementById("col-quantity").value;
     document.documentElement.style.setProperty('--col',col);
     document.documentElement.style.setProperty('--row',r);
     for (let rows = 0; rows < r; rows++) {
@@ -17,6 +21,9 @@ function createGrid(r,col) {
     }
 
 };
+createGrid();
+document.getElementById("demo").innerHTML=r;
+
 
 
 // // function that clears the grid
