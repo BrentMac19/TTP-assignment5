@@ -11,9 +11,11 @@
     }
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(var(--col),1fr);
+  grid-template-columns: repeat(var(--col),auto);
+  grid-template-rows: repeat(var(--row),auto);
   background-color: #2196F3;
   padding: 10px;
+  margin:50px;
 }
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
@@ -29,8 +31,11 @@
 <h1>Grid Elements</h1>
 <form id="form">
 
-Rows: <input type="number" id="row-quantity"value="6">
-Columns: <input type="number" id="col-quantity"value="6">
+<br><br>
+<button id="add-row">Add Row</button>
+<button id="add-columns">Add Column</button>
+<button id="remove-row">Remove Row  </button>
+<button id="remove-columns">Remove Column </button>
 <input type="submit" id="submit"name="Update Grid">
 </form>
 <br><br>

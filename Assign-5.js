@@ -1,28 +1,58 @@
-// function that builds a grid in the "container"
+
 let grid= document.getElementById("grid-con");
 let grid_style=document.getElementsByClassName("grid-item");
 let form=document.getElementById("form");
+let demo=document.getElementById("demo");  
+let r=3;
+let col=3;
+
+//Submit form that prevents the grid from Resetting to orginal grid
 form.addEventListener("submit",function(event){
+    console.log(clear);
     event.preventDefault();
     console.log(event);
-    createGrid();
+    createGrid(r,col);
 })
+createGrid(r,col);
 
 
-function createGrid() {
-    let r=document.getElementById("row-quantity").value;
-    let col=document.getElementById("col-quantity").value;
+function createGrid(r,col) {
+    grid.innerHTML='';
     document.documentElement.style.setProperty('--col',col);
     document.documentElement.style.setProperty('--row',r);
-    for (let rows = 0; rows < r; rows++) {
-        for (let columns = 0; columns < col; columns++) {
-            grid.innerHTML+="<div class='grid-item'></div>";
-        }
+    for(let i=0;i<r*col;i++){
+        grid.innerHTML+="<div class='grid-item'></div>";
     }
 
 };
-createGrid();
-document.getElementById("demo").innerHTML=r;
+let row_adder=document.getElementById("add-row");
+row_adder.addEventListener("click",function(event){
+    event.preventDefault();
+    r+=1;
+    createGrid(r,col);
+
+})
+let col_adder=document.getElementById("add-columns");
+col_adder.addEventListener("click",function(event){
+    event.preventDefault();
+    col+=1;
+    createGrid(r,col);
+})
+let row_sub=document.getElementById("remove-row");
+row_sub.addEventListener("click",function(event){
+    event.preventDefault();
+    r-=1;
+    createGrid(r,col);
+})
+let col_sub=document.getElementById("remove-columns");
+col_sub.addEventListener("click",function(event){
+    event.preventDefault();
+    col-=1;
+    createGrid(r,col);
+})
+
+
+
 
 
 
