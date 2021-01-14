@@ -1,52 +1,135 @@
-// function that builds a grid in the "container"
-let grid= document.getElementById("grid-con");
-let grid_style=document.getElementsByClassName("grid-item");
-console.log(grid);
-let r=6;
-let col=6;
-createGrid(r,col);
+let numRows = 1;
+let numCols = 1;
 
+let cellColored = false;
+let dragColoring = false;
 
-function createGrid(r,col) {
-    document.documentElement.style.setProperty('--col',col);
-    document.documentElement.style.setProperty('--row',r);
-    for (let rows = 0; rows < r; rows++) {
-        for (let columns = 0; columns < col; columns++) {
-            grid.innerHTML+="<div class='grid-item'></div>";
-        }
+//Adding Row
+function addRow(){
+    let grid = document.getElementById('grid');
+    let newRow = document.createElement("tr");
+
+    for(let i = 0; i < numCols; i++) {
+        let cell = document.createElement("td");
+        newRow.appendChild(cell);
+        changeColor(cell);
     }
+    grid.appendChild(newRow);
+    numRows++;
+}
 
+//Adding Column
+function addCol(){
+    let rows = document.querySelectorAll("tr");
+    let rowIndex = 0;
+
+    for(let i = 0; i < numRows; i++) {
+        let cell = document.createElement("td");
+        changeColor(cell);
+        rows[rowIndex].appendChild(cell);
+        rowIndex++;
+    }
+    numCols++;
+}
+
+//Removing Row
+function removeRow(){
+    let grid = document.getElementById('grid');
+    grid.deleteRow(numRows-1);
+    numRows--;
+}
+
+//Removing Column
+function removeCol(){
+    let rows = document.querySelectorAll("tr");
+    let rowIndex = 0;
+    for(let i = 0; i < numRows; i++) {
+        rows[rowIndex].removeChild(rows[rowIndex].lastChild);
+        rowIndex++;
+    }
+    numCols--;
+}
+
+
+//setting Drop List color to a variable
+let chosenColor = 'pink';
+const chooseColor = (color) => {
+  chosenColor = color;
 };
 
+function changeColor(cell) {
+    cell.classList.add('isNotColored');
+    //Changing Color on a click
+    cell.addEventListener('click', colorChanged);
 
-// // function that clears the grid
-// function clearGrid(){
-//     $(".grid-item").remove();
-// };  
+    //test if user is holding mouse button down
+    cell.addEventListener('mousedown', (e) => {
+        cellColored = true;
+  });
+  //used to tell if the user is not holding the mouse button
+  cell.addEventListener('mouseup', (e) => {
+    if (cellColored) {
+    cellColored = false;
+    }
+  });
+  //used to color the grid while moving the mouse
+  cell.addEventListener('mousemove', (e) => {
+    if (cellColored) {
+        cell.style.backgroundColor = chosenColor;
+        cell.classList.remove('isNotColored');
+    }
+  });
+}
 
-// // function that prompts the user to select the number of boxes in a new grid
-// // the function then also creates that new grid
-// function refreshGrid(){
-//     var z = prompt("How many boxes per side?");
-//     clearGrid();
-//     createGrid(z);
-// };
+function colorChanged() {
+  this.style.backgroundColor = chosenColor;
+  this.classList.remove('isNotColored');
+}
 
-// // create a 16x16 grid when the page loads
-// // creates a hover effect that changes the color of a square to black when the mouse passes over it, leaving a (pixel) trail through the grid
-// // allows the click of a button to prompt the user to create a new grid
-// $(document).ready(function() {
-//     createGrid(16);
+//Filling all blank buttons with selected color
+function fillAllBlank() {
+    let cells = document.getElementsByTagName('td');
+    let cellsList = [...cells];
 
-//     $(".grid-item").mouseover(function() {
-//         $(this).css("background-color", "black");
-//         });
+    const uncoloredCells = cellsList.filter(cell => {
+        return cell.classList.contains('isNotColored');
+    });
 
-//     $(".grid-container").click(function() {
-//         refreshGrid();
+    uncoloredCells.forEach(cell => {
+        cell.style.backgroundColor = chosenColor;
+        cell.classList.remove('isNotColored');
+    })
+}
 
-//         $(".grid-item").mouseover(function() {
-//         $(this).css("background-color", "black");
-//         });
-//     });
-// });
+//Changing the color of all the cells to selected color
+function fillAll(){
+    let cells = document.getElementsByTagName('td');
+    let cellsList = [...cells];
+
+    cellsList.forEach(cell => {
+        cell.style.backgroundColor = chosenColor;
+        cell.classList.remove('isNotColored');
+    })
+}
+
+//Clearing all the Cells color
+function clearAll() {
+    let cells = document.getElementsByTagName('td');
+    let cellsList = [...cells];
+
+    cellsList.forEach(cell => {
+        cell.style.backgroundColor = 'white';
+        cell.classList.add('isNotColored');
+    })
+}
+
+
+//any starting cells
+let cells = document.getElementsByTagName('td');
+let cellList = [...cells];
+
+for (let i=0; i < cellList.length; i++) {
+    const cell = cellList[i];
+    changeColor(cell);
+}
+

@@ -1,41 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- <link rel=stylesheet type="text/css" href="Project_Javascript_jQuery.css">
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script type="text/javascript" src="Project_Javascript_jQuery.js"></script> -->
-<style>
-    :root{
-        --col:6;
-        --row:6;
-    }
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(var(--col),1fr);
-  background-color: #2196F3;
-  padding: 10px;
-}
-.grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
-  text-align: center;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment5</title>
+    <link rel='stylesheet' href='style.css'>
 </head>
 <body>
+    
+    <h2>Grid Modifier </h2>
 
-<h1>Grid Elements</h1>
+    <button onclick="addRow()">Add-Row</button>
+    <button onclick="addCol()">Add-Column</button>
+    <button onclick="removeRow()">Remove-Row</button>
+    <button onclick="removeCol()">Remove-Column</button>
+    <br><br>
 
-<p>A Grid Layout must have a parent element with the <em>display</em> property set to <em>grid</em> or <em>inline-grid</em>.</p>
+    <!-- issue5 -->
+    <div id='colors'>
+        <span>Choose individual cell color:</span>
+        <select onchange="chooseColor(this.value)">
+            <option value="pink">Pink</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+            <option value="black">Black</option>
+        </select>
+    </div>
+    <br>
+    <button onclick='fillAllBlank()'>Fill All Blank Cells</button>
+    <button onclick="fillAll()">Fill All Cells</button>
+    <button onclick="clearAll()">Clear Color</button>
 
-<p>Direct child element(s) of the grid container automatically becomes grid items.</p>
+    <table id="grid">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
 
-<div class="grid-container" id="grid-con">
-
-</div>
-
-<script src="Assign-5.js"></script>
+    
+    
+    <script src="Assign-5.js"></script>
 </body>
 </html>
