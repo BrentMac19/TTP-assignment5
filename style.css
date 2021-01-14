@@ -1,0 +1,28 @@
+*{
+    background-color: gainsboro;
+}
+
+button{
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+td {
+    height: 35px;
+    width: 35px;
+    background-color:rgb(63, 175, 250);
+    border-style: solid;
+    border-width: thin;
+}
+
+h2{
+    margin-bottom: 5px;
+    font-size: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400px;
+}
+
+table{
+    margin-top: 20px;
+    margin-left: 20px;
+}
